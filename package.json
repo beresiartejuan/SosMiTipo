@@ -1,0 +1,45 @@
+{
+  "name": "side-project-starter-kit",
+  "version": "0.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=v18.16.0"
+  },
+  "packageManager": "pnpm@8.3.1",
+  "scripts": {
+    "build": "turbo build",
+    "clean": "git clean -xdf node_modules",
+    "clean:workspaces": "turbo clean",
+    "db:docker:startup": "docker compose --profile db up -d",
+    "db:docker:shutdown": "docker compose --profile db down",
+    "app:docker:startup": "pnpm i && docker compose --profile dev up -d",
+    "app:docker:shutdown": "pnpm clean:workspaces && docker compose --profile dev down",
+    "db:generate": "turbo db:generate",
+    "db:push": "turbo db:push db:generate",
+    "db:migrate": "turbo db:migrate",
+    "dev": "turbo dev --parallel",
+    "format": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,md,json}\" --ignore-path .gitignore",
+    "lint": "turbo lint && manypkg check",
+    "lint:fix": "turbo lint:fix && manypkg fix",
+    "type-check": "turbo type-check",
+    "prepare": "npx husky install"
+  },
+  "dependencies": {
+    "@acme/eslint-config": "^0.1.0",
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
+    "@manypkg/cli": "^0.20.0",
+    "@types/prettier": "^2.7.2",
+    "eslint": "^8.38.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.7",
+    "prettier-plugin-prisma": "^4.10.0",
+    "prettier-plugin-tailwindcss": "^0.2.7",
+    "side-ui": "^0.15.1",
+    "tailwindcss-scrollbar": "^0.1.0",
+    "turbo": "^1.9.3",
+    "typescript": "^5.0.4"
+  }
+}
